@@ -1,0 +1,30 @@
+{% extends "books/base_generic.html" %}
+{% block content %}
+    <div class="d-flex justify-content-between align-items-center">
+        <h2>Book List</h2>
+        <a href="{% url 'book_create' %}" class="btn btn-primary">Add New Book</a>
+    </div>
+    <table class="table table-striped mt-3">
+        <thead class="table-dark">
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Publication Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in object_list %}
+                <tr>
+                    <td><a href="{% url 'book_detail' book.pk %}">{{ book.title }}</a></td>
+                    <td>{{ book.author }}</td>
+                    <td>{{ book.publication_date }}</td>
+                    <td>
+                        <a href="{% url 'book_update' book.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="{% url 'book_delete' book.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

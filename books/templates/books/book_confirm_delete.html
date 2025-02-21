@@ -1,0 +1,14 @@
+{% extends "books/base_generic.html" %}
+{% block content %}
+    <div class="card border-danger">
+        <div class="card-body">
+            <h2 class="text-danger">Delete Book</h2>
+            <p>Are you sure you want to delete "<strong>{{ object.title }}</strong>"?</p>
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Yes, delete</button>
+                <a href="{% url 'book_list' %}" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+    </div>
+{% endblock %}
